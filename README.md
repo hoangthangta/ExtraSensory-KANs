@@ -64,20 +64,6 @@ Place the dataset under the `data/` directory according to the structure expecte
 
 ---
 
-# Requirements
-numpy==2.5.3
-
-pandas==3.0.6
-
-prettytable==3.18.0
-
-tabm==0.0.3
-
-torch==2.10.0
-
-tqdm==4.67.1
-
-
 # Running the Experiments
 
 The main experiment script is:
