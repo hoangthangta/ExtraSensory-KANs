@@ -1,15 +1,12 @@
-# ============================================================
+#--------------------------------------------------------------------------
 # ExtraSensory: 3 seeds × 5 folds
 # Seeds: 0, 1, 2
 # Folds: 0, 1, 2, 3, 4
-# ============================================================
+#--------------------------------------------------------------------------
 
 for seed in 0 1 2; do
 
-    # ========================================================
     # Multilabel — 51 labels
-    # ========================================================
-
     # MLP — 71925 params
     for f in 0 1 2 3 4; do
         python run_extra_sen.py --task "multilabel" --model "mlp" --fold "$f" --hidden_layers "256" --batch_size 64 --epochs 20 --lr 1e-3 --weight_decay 1e-4 --norm_type "layer" --activation "silu" --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed "$seed" --note "seed_${seed}_fold_${f}"
@@ -46,11 +43,7 @@ for seed in 0 1 2; do
         sleep 5
     done
 
-
-    # ========================================================
     # Main activity — 6 classes
-    # ========================================================
-
     # MLP — 60360 params
     for f in 0 1 2 3 4; do
         python run_extra_sen.py --task "main" --model "mlp" --fold "$f" --hidden_layers "256" --batch_size 64 --epochs 20 --lr 1e-3 --weight_decay 1e-4 --norm_type "layer" --activation "silu" --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed "$seed" --note "seed_${seed}_fold_${f}"
