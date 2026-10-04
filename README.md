@@ -98,28 +98,36 @@ For the complete experimental settings, please refer to the shell script.
 
 # Common Parameters
 
+# Common Parameters
+
 The main experiment script supports:
 
-* `--task`: Task to train: `multilabel`.
-* `--model`: Model to train: `mlp`, `tab_m`, `efficient_kan`, `fast_kan`, or `bsrbf_kan`.
-* `--fold`: Five-fold user-level cross-validation fold.
+* `--task`: Task to train: `multilabel` or `main`.
+* `--model`: Model to train: `mlp`, `sech_kan`, `efficient_kan`, `fast_kan`, `bsrbf_kan`, or `tab_m`.
+* `--data_root`: Root directory containing the dataset. Default: `./data`.
+* `--output_root`: Directory for saving experiment results. Default: `./output`.
+* `--note`: Optional experiment identifier. Default: `""`.
+* `--fold`: Five-fold user-level cross-validation fold (`0`–`4`). Default: `0`.
+* `--val_subject_fraction`: Fraction of training users used for validation. Default: `0.2`.
+* `--clip`: Clipping value for standardized features. Default: `5.0`.
 * `--hidden_layers`: Hidden-layer configuration. Default: `256`.
 * `--batch_size`: Training batch size. Default: `64`.
 * `--epochs`: Number of training epochs. Default: `20`.
 * `--lr`: Learning rate. Default: `1e-3`.
 * `--weight_decay`: Weight decay. Default: `1e-4`.
-* `--scheduler`: Learning-rate scheduler. Default: `OneCycleLR`.
-* `--norm1_type`: First normalization layer.
-* `--norm2_type`: Second normalization layer.
-* `--norm_mode`: Normalization mode. Default: `all`.
+* `--scheduler`: Learning-rate scheduler: `StepLR`, `CosineAnnealingLR`, `OneCycleLR`, `ExponentialLR`, or `CyclicLR`. Default: `OneCycleLR`.
+* `--norm1_type`: First normalization layer. Default: `""`.
+* `--norm2_type`: Second normalization layer. Default: `layer`.
+* `--norm_mode`: Normalization mode: `none`, `first`, `except_first`, or `all`. Default: `all`.
 * `--norm_type`: General normalization type. Default: `layer`.
 * `--activation`: Activation function. Default: `silu`.
-* `--num_grids`: Number of grid points used by KAN models.
+* `--num_grids`: Number of grid points used by KAN models. Default: `4`.
 * `--balance`: Enable class balancing.
-* `--select_metric`: Validation metric used for model selection.
-* `--seed`: Random seed.
-* `--device`: Computing device. Default: `cuda`.
-* `--note`: Optional experiment identifier.
+* `--threshold`: Decision threshold for multilabel classification. Default: `0.5`.
+* `--select_metric`: Validation metric used for model selection: `balanced_accuracy`, `macro_f1`, `micro_f1`, or `accuracy`. Default: `micro_f1`.
+* `--num_workers`: Number of data-loading workers. Default: `4`.
+* `--seed`: Random seed. Default: `42`.
+* `--device`: Computing device: `cuda` or `cpu`. Default: `cuda`.
 
 ---
 
