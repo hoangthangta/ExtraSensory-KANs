@@ -19,7 +19,6 @@ from torch.utils.data import DataLoader, TensorDataset
 from tqdm import tqdm
 
 from mlp import MLP
-from sech_kan import SechKAN
 from efficient_kan import EfficientKAN
 from fast_kan import FastKAN
 from bsrbf_kan import BSRBF_KAN
@@ -201,10 +200,7 @@ def build_model(args, input_dim, num_classes):
     layers = [input_dim] + hidden + [num_classes]
     if args.model == "mlp":
         return MLP(net_layers=layers, base_activation=args.activation, norm_type=args.norm_type)
-    if args.model == "sech_kan":
-        return SechKAN(net_layers=layers, num_grids=args.num_grids, use_base_update=False, base_activation="silu",
-                       norm1_type=args.norm1_type, norm2_type=args.norm2_type, norm_mode=args.norm_mode,
-                       use_width=False, net_type="standard")  
+    
     if args.model == 'fast_kan':
         return FastKAN(layers_hidden=layers, num_grids=args.num_grids, use_base_update=True, 
                        use_layernorm=True) 
@@ -509,8 +505,6 @@ if __name__ == "__main__":
 # MLP, 71925
 # python run_extra_sen.py --task "multilabel" --model "mlp" --fold 0 --hidden_layers "256" --batch_size 64 --epochs 1 --lr 1e-3 --weight_decay 1e-4 --norm_type "layer" --activation "silu" --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed 0 --note "seed_0_fold_0"
 
-# SechKAN, 71947
-# python run_extra_sen.py --task "multilabel" --model "sech_kan" --fold 0 --hidden_layers "256" --num_grids 4 --batch_size 64 --epochs 1 --lr 1e-3 --weight_decay 1e-4 --norm1_type "layer" --norm2_type "" --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed 0 --note "seed_0_fold_0"
 
 # EfficientKAN, 71760
 # python run_extra_sen.py --task "multilabel" --model "efficient_kan" --fold 0 --hidden_layers "26" --batch_size 64 --epochs 1 --lr 1e-3 --weight_decay 1e-4 --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed 0 --note "seed_0_fold_0"
@@ -530,9 +524,6 @@ if __name__ == "__main__":
 
 # MLP, 60360
 # python run_extra_sen.py --task "main" --model "mlp" --fold 0 --hidden_layers "256" --batch_size 64 --epochs 1 --lr 1e-3 --weight_decay 1e-4 --norm_type "layer" --activation "silu" --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed 0 --note "seed_0_fold_0"
-
-# SechKAN, 60382
-# python run_extra_sen.py --task "main" --model "sech_kan" --fold 0 --hidden_layers "256" --num_grids 4 --batch_size 64 --epochs 1 --lr 1e-3 --weight_decay 1e-4 --norm1_type "layer" --norm2_type "" --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed 0 --note "seed_0_fold_0"
 
 # EfficientKAN, 60060
 # python run_extra_sen.py --task "main" --model "efficient_kan" --fold 0 --hidden_layers "26" --batch_size 64 --epochs 1 --lr 1e-3 --weight_decay 1e-4 --scheduler "OneCycleLR" --balance --select_metric "balanced_accuracy" --seed 0 --note "seed_0_fold_0"
