@@ -98,8 +98,6 @@ For the complete experimental settings, please refer to the shell script.
 
 # Common Parameters
 
-# Common Parameters
-
 The main experiment script supports:
 
 * `--task`: Task to train: `multilabel` or `main`.
