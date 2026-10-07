@@ -2,7 +2,7 @@
 
 Official implementation for the paper:
 
-> **Kolmogorov-Arnold Networks for Personal Context Recognition on ExtraSensory**
+> **Kolmogorov-Arnold Networks for Personal Context Recognition on ExtraSensory** submitted to [SOICT 2026](https://soict.org/).
 
 This repository provides the code and experimental configurations for evaluating KAN variants on the ExtraSensory personal context recognition dataset. The experiments compare KAN models with conventional **MLP** and **TabM**.
 
