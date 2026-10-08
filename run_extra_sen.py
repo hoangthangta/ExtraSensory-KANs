@@ -434,7 +434,7 @@ def train_model(args, data, class_names, n_users):
 # Main
 def get_args():
     p = argparse.ArgumentParser(description="ExtraSensory benchmark (225 features / 51 labels)")
-    p.add_argument("--model", default="mlp", choices=["mlp", "sech_kan", "efficient_kan", "fast_kan", "bsrbf_kan", "tab_m"])
+    p.add_argument("--model", default="mlp", choices=["mlp", "efficient_kan", "fast_kan", "bsrbf_kan", "tab_m"])
     p.add_argument("--task", default="multilabel", choices=["multilabel", "main"],
                    help="multilabel: 51 labels, masked BCE | main: 6 main activities, CE")
     p.add_argument("--data_root", default="./data")
